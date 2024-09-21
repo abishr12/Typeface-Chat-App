@@ -2,4 +2,5 @@
   background-color: lightyellow;
   width: 10%;
   box-sizing: border-box;
+  min-width: 100px;
 }

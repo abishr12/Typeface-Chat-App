@@ -1,17 +1,46 @@
 import { Box, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import styles from './index.module.css';
-import { Message, UserList } from '../../data-access/types';
+import { Message, MessageList, UserList } from '../../data-access/types';
 
 interface ChatWindowProps {
   messages: Message[];
   users: UserList;
+  chatUserId: number;
+  setChatMessages: React.Dispatch<React.SetStateAction<MessageList>>;
 }
 
 // Todo: Timestamps
-// Todo: Better looking font for text
 // Todo: Enter functionality for sending messages
-const ChatWindow = ({ messages, users }: ChatWindowProps) => {
+const ChatWindow = ({
+  messages,
+  setChatMessages,
+  chatUserId,
+}: ChatWindowProps) => {
+  const [inputValue, setInputValue] = useState('');
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      // Trigger submit logic
+      handleSubmit();
+    }
+  };
+
+  const handleSubmit = () => {
+    setChatMessages((prevMessages: MessageList) => {
+      const newMessage: Message = {
+        id: prevMessages[chatUserId]?.length ?? 0,
+        text: inputValue,
+        userId: 0,
+        timestamp: Date.now(),
+      };
+      return {
+        ...prevMessages,
+        [chatUserId]: [...(prevMessages[chatUserId] ?? []), newMessage],
+      };
+    });
+
+    setInputValue('');
+  };
   return (
     <div className={styles.chatWindow}>
       <Box className={styles.messages}>
@@ -33,6 +62,9 @@ const ChatWindow = ({ messages, users }: ChatWindowProps) => {
           placeholder="Chat Here"
           variant="outlined"
           className={styles.chatTextField}
+          onKeyDown={handleKeyPress}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
         />
       </div>
     </div>

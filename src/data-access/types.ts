@@ -11,3 +11,7 @@ export interface User {
 export interface UserList {
   [key: number]: User;
 }
+
+export interface MessageList {
+  [key: number]: Message[];
+}

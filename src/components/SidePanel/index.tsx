@@ -1,19 +1,35 @@
 import React from 'react';
 import { Tabs, Tab } from '@mui/material';
+import { UserList } from '../../data-access/types';
 
-const SidePanel = () => {
+interface SidePanelProps {
+  users: UserList;
+  chatUserId: number;
+  setChatUserId: (userId: number) => void;
+}
+
+// Todo: Delete chat
+const SidePanel = ({ users, chatUserId, setChatUserId }: SidePanelProps) => {
+  const userValues = Object.values(users).filter(
+    (entry) => entry.name !== 'Adham',
+  );
   return (
     <Tabs
-      value={1}
-      onChange={() => {}}
+      value={userValues.findIndex((user) => user.id === chatUserId)}
       variant="scrollable"
       scrollButtons="auto"
       aria-label="chats"
       orientation="vertical"
     >
-      <Tab label="John" />
-      <Tab label="Nathan" />
-      <Tab label="Sara" />
+      {userValues.map((user, index) => (
+        <Tab
+          key={user.id}
+          label={user.name}
+          onClick={() => {
+            setChatUserId(user.id);
+          }}
+        />
+      ))}
     </Tabs>
   );
 };

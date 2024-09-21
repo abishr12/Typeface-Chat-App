@@ -3,29 +3,36 @@
   position: absolute;
   bottom: 20px;
 }
+.textBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 .chatWindow {
   display: flex;
   flex-direction: column;
   width: 100%;
   justify-content: space-between;
-  overflow-y: scroll;
-  padding: 24px;
+  padding: 48px;
 }
-.messsages {
+.messages {
   display: flex;
   flex-direction: column;
-  width: 80%;
-  overflow-y: auto;
+  width: 100%;
+  overflow-y: scroll;
   margin-top: 10px;
-  height: 800px;
+  height: 80%;
+  /* padding: 24px; */
 }
 .userMessage {
   display: flex;
   justify-content: flex-end;
+  margin-right: 12px;
 }
 
 .chatMessage {
   display: flex;
   justify-content: flex-start;
+  margin-left: 12px;
 }

@@ -8,6 +8,9 @@ interface ChatWindowProps {
   users: UserList;
 }
 
+// Todo: Timestamps
+// Todo: Better looking font for text
+// Todo: Enter functionality for sending messages
 const ChatWindow = ({ messages, users }: ChatWindowProps) => {
   return (
     <div className={styles.chatWindow}>
@@ -15,19 +18,23 @@ const ChatWindow = ({ messages, users }: ChatWindowProps) => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={index % 2 === 0 ? styles.message : styles.userMessage}
+            className={
+              message.userId === 0 ? styles.userMessage : styles.chatMessage
+            }
           >
             <span className={styles.messageText}>{message.text}</span>
           </div>
         ))}
       </Box>
-      <TextField
-        id="outlined-multiline-static"
-        label="Chat"
-        placeholder="Chat Here"
-        variant="outlined"
-        className={styles.chatTextField}
-      />
+      <div className={styles.textBox}>
+        <TextField
+          id="outlined-multiline-static"
+          label="Chat"
+          placeholder="Chat Here"
+          variant="outlined"
+          className={styles.chatTextField}
+        />
+      </div>
     </div>
   );
 };

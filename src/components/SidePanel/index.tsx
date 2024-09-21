@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tabs, Tab } from '@mui/material';
 import { UserList } from '../../data-access/types';
+import styles from './index.module.css';
 
 interface SidePanelProps {
   users: UserList;
@@ -20,6 +21,7 @@ const SidePanel = ({ users, chatUserId, setChatUserId }: SidePanelProps) => {
       scrollButtons="auto"
       aria-label="chats"
       orientation="vertical"
+      className={styles.sidePanel}
     >
       {userValues.map((user, index) => (
         <Tab

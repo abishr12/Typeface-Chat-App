@@ -1,6 +1,24 @@
 .sidePanel {
-  background-color: lightyellow;
-  width: 10%;
+  background-color: rgba(186, 186, 178, 0.076);
+  width: 18%;
   box-sizing: border-box;
   min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+
+.addChatTextField {
+  width: 80%;
+  font-size: 12px;
+}
+
+.textField {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.addChatTextField > :global(.MuiInputBase-root) {
+  font-size: 12px;
 }

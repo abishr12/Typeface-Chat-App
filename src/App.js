@@ -1,10 +1,11 @@
-import logo from './logo.svg';
+import { SidePanel, ChatWindow } from './components';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <div>Hello</div>
+      <SidePanel />
+      <ChatWindow />
     </div>
   );
 }

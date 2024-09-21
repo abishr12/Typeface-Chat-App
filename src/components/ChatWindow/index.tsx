@@ -1,36 +1,32 @@
+import { Box, TextField } from '@mui/material';
 import React, { useState } from 'react';
+import styles from './index.module.css';
+import { Message } from '../../data-access/types';
 
-const ChatWindow = () => {
-    const [messages, setMessages] = useState<string[]>([]);
-    const [input, setInput] = useState<string>('');
+interface ChatWindowProps {
+  messages: Message[];
+}
 
-    const handleSend = () => {
-        if (input.trim()) {
-            setMessages([...messages, input]);
-            setInput('');
-        }
-    };
-
-    return (
-        <div className="chat-window">
-            <div className="messages">
-                {messages.map((message, index) => (
-                    <div key={index} className="message">
-                        {message}
-                    </div>
-                ))}
-            </div>
-            <div className="input-area">
-                <input
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder="Type a message..."
-                />
-                <button onClick={handleSend}>Send</button>
-            </div>
-        </div>
-    );
+const ChatWindow = ({ messages }: ChatWindowProps) => {
+  return (
+    <div className={styles.chatWindow}>
+      <Box className={styles.messages}>
+        {messages.map((message, index) => (
+          <div key={index} className={styles.message}>
+            <span className={styles.sender}>{message.sender}</span>
+            <span className={styles.messageText}>{message.text}</span>
+          </div>
+        ))}
+      </Box>
+      <TextField
+        id="outlined-multiline-static"
+        label="Chat"
+        placeholder="Default Value"
+        variant="outlined"
+        className={styles.chatTextField}
+      />
+    </div>
+  );
 };
 
 export default ChatWindow;

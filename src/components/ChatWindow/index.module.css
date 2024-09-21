@@ -1,22 +1,31 @@
 .chatTextField {
   width: 80%;
-  margin-top: 10px;
-  position: fixed;
-  bottom: 10px;
+  position: absolute;
+  bottom: 20px;
 }
 
 .chatWindow {
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: center;
-  height: 100vh;
+  justify-content: space-between;
+  overflow-y: scroll;
+  padding: 24px;
 }
 .messsages {
   display: flex;
   flex-direction: column;
   width: 80%;
-  height: 80%;
   overflow-y: auto;
   margin-top: 10px;
+  height: 800px;
+}
+.userMessage {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chatMessage {
+  display: flex;
+  justify-content: flex-start;
 }

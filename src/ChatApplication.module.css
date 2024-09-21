@@ -1,5 +1,8 @@
 .chatApp {
-  height: 100vh;
+  height: 95vh;
   width: 100vw;
   display: flex;
+  overflow: none;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 24px;
 }

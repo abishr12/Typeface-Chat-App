@@ -1,6 +1,13 @@
 export interface Message {
   id: number;
   text: string;
-  sender: string;
+  userId: number;
   timestamp: number;
+}
+
+export interface User {
+  name: string;
+}
+export interface UserList {
+  [key: number]: User;
 }

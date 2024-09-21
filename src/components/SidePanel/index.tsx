@@ -2,12 +2,14 @@ import React from 'react';
 import { Tabs, Tab, Button, TextField } from '@mui/material';
 import { UserList } from '../../data-access/types';
 import styles from './index.module.css';
+import { Close } from '@mui/icons-material';
 
 interface SidePanelProps {
   users: UserList;
   chatUserId: number;
   setChatUserId: (userId: number) => void;
   handleAddChat: (newChatName: string) => void;
+  handleDeleteChat: (userId: number) => void;
 }
 
 // Todo: Delete chat
@@ -16,6 +18,7 @@ const SidePanel = ({
   chatUserId,
   setChatUserId,
   handleAddChat,
+  handleDeleteChat,
 }: SidePanelProps) => {
   const userValues = Object.values(users).filter(
     (entry) => entry.name !== 'Adham',
@@ -38,6 +41,20 @@ const SidePanel = ({
           <Tab
             key={user.id}
             label={user.name}
+            icon={
+              user.id === chatUserId ? (
+                <Close
+                  className={styles.closeIcon}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeleteChat(user.id);
+                  }}
+                />
+              ) : (
+                <div className={styles.closeIcon} />
+              )
+            }
+            iconPosition="end"
             onClick={() => {
               setChatUserId(user.id);
               setOpenAddChatTextField(false);

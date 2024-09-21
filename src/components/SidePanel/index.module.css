@@ -22,3 +22,11 @@
 .addChatTextField > :global(.MuiInputBase-root) {
   font-size: 12px;
 }
+
+.closeIcon {
+  position: absolute;
+  right: 30px;
+  color: lightcoral;
+  height: 15px;
+  width: 15px;
+}

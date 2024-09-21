@@ -1,7 +1,7 @@
 import { SidePanel, ChatWindow } from './components';
 import styles from './ChatApplication.module.css';
 import React, { useState } from 'react';
-import { Message, MessageList, User } from './data-access/types';
+import { MessageList, User, UserList } from './data-access/types';
 
 const messages: MessageList = {
   5349: [
@@ -17,7 +17,7 @@ const messages: MessageList = {
     { id: 2, userId: 0, text: 'Hello, Nathan!', timestamp: 1634054161 },
   ],
 };
-const users = {
+const users: UserList = {
   0: { id: 0, name: 'Adham' },
   4902: { id: 4902, name: 'John' },
   5349: { id: 5349, name: 'Sara' },
@@ -38,6 +38,24 @@ const ChatApplication = () => {
     setChatUserId(newUserId);
   };
 
+  const handleDeleteChat = (userId: number) => {
+    // set chatUserId to the first user in the chatUsers object that is not 0 and not the user being deleted
+    setChatUserId(
+      Number(
+        Object.keys(chatUsers).find((id) => +id !== 0 && +id !== userId),
+      ) ?? 0,
+    );
+    const newChatUsers = { ...chatUsers };
+    delete newChatUsers[userId];
+    setChatUsers(newChatUsers);
+
+    const newChatMessages = { ...chatMessages };
+    delete newChatMessages[userId];
+    setChatMessages(newChatMessages);
+  };
+
+  console.log('chatUserId', chatUserId);
+
   return (
     <div className={styles.chatApp}>
       <SidePanel
@@ -45,9 +63,10 @@ const ChatApplication = () => {
         chatUserId={chatUserId}
         setChatUserId={setChatUserId}
         handleAddChat={handleAddChat}
+        handleDeleteChat={handleDeleteChat}
       />
       <ChatWindow
-        messages={chatMessages[chatUserId]}
+        messages={chatMessages[chatUserId] ?? []}
         users={chatUsers}
         chatUserId={chatUserId}
         setChatMessages={setChatMessages}

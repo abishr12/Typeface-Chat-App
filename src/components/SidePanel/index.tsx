@@ -26,6 +26,10 @@ const SidePanel = ({
   const [openAddChatTextField, setOpenAddChatTextField] = React.useState(false);
   const [newChatName, setNewChatName] = React.useState('');
 
+  // Wanted close button to be available only on the selected chat
+  // rather than cluttering up the side panel
+  // Assuming that user would be more likely to delete the chat they are currently viewing
+
   return (
     <div className={styles.sidePanel}>
       <Button onClick={() => setOpenAddChatTextField(true)}>Add Chat</Button>

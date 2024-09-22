@@ -10,8 +10,7 @@ interface ChatWindowProps {
   setChatMessages: React.Dispatch<React.SetStateAction<MessageList>>;
 }
 
-// Todo: Timestamps
-// Todo: Enter functionality for sending messages
+const SELF_USER_ID = 0;
 const ChatWindow = ({
   messages,
   setChatMessages,
@@ -41,6 +40,21 @@ const ChatWindow = ({
 
     setInputValue('');
   };
+  // Convert timestamps to human-readable format
+
+  const convertDate = (timestamp: number) => {
+    const date = new Date(timestamp);
+    // Get month, day, and time in the desired format
+    const month = date.toLocaleString('default', { month: 'short' }); // Full month name (e.g., "September")
+    const day = date.getDate(); // Day of the month
+    const time = date.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+    return `${month} ${day}, ${time}`;
+  };
+
+  // Believe the user would prefer to send messages with the enter key
   return (
     <div className={styles.chatWindow}>
       <Box className={styles.messages}>
@@ -48,10 +62,23 @@ const ChatWindow = ({
           <div
             key={index}
             className={
-              message.userId === 0 ? styles.userMessage : styles.chatMessage
+              message.userId === SELF_USER_ID
+                ? styles.userMessage
+                : styles.chatMessage
             }
           >
-            <span className={styles.messageText}>{message.text}</span>
+            <div className={styles.messageContainer}>
+              <span className={styles.messageText}>{message.text}</span>
+              <span
+                className={
+                  message.userId === SELF_USER_ID
+                    ? styles.userMessageTime
+                    : styles.chatMessageTime
+                }
+              >
+                {convertDate(message.timestamp)}
+              </span>
+            </div>
           </div>
         ))}
       </Box>

@@ -39,7 +39,7 @@ const ChatApplication = () => {
   };
 
   const handleDeleteChat = (userId: number) => {
-    // set chatUserId to the first user in the chatUsers object that is not 0 and not the user being deleted
+    // set chatUserId to the first user in the chatUsers object that is not 0 (myself) and not the user being deleted
     setChatUserId(
       Number(
         Object.keys(chatUsers).find((id) => +id !== 0 && +id !== userId),

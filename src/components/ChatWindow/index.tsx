@@ -58,7 +58,7 @@ const ChatWindow = ({
       <div className={styles.textBox}>
         <TextField
           id="outlined-multiline-static"
-          label="Chat"
+          label="Chat Here"
           placeholder="Chat Here"
           variant="outlined"
           className={styles.chatTextField}

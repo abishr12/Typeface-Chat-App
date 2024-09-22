@@ -12,7 +12,6 @@ interface SidePanelProps {
   handleDeleteChat: (userId: number) => void;
 }
 
-// Todo: Delete chat
 const SidePanel = ({
   users,
   chatUserId,
@@ -49,6 +48,7 @@ const SidePanel = ({
                     e.stopPropagation();
                     handleDeleteChat(user.id);
                   }}
+                  aria-label={`delete ${user.name} chat`}
                 />
               ) : (
                 <div className={styles.closeIcon} />
@@ -67,6 +67,7 @@ const SidePanel = ({
           <TextField
             type="text"
             placeholder="Enter user name"
+            label="add user chat"
             onChange={(e) => setNewChatName(e.target.value)}
             className={styles.addChatTextField}
             onKeyDown={(e) => {

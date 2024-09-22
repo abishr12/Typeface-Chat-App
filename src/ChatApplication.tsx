@@ -54,8 +54,6 @@ const ChatApplication = () => {
     setChatMessages(newChatMessages);
   };
 
-  console.log('chatUserId', chatUserId);
-
   return (
     <div className={styles.chatApp}>
       <SidePanel

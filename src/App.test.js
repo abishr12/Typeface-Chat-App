@@ -10,7 +10,21 @@ import userEvent from '@testing-library/user-event';
 
 test('renders chat app', () => {
   render(<App />);
-  expect(screen.getByText(/add chat/i)).toBeInTheDocument();
+
+  const addChatButton = screen.getByText(/add chat/i);
+  expect(addChatButton).toBeInTheDocument();
+
+  const sidePanelUser = screen.getByText(/sara/i);
+  expect(sidePanelUser).toBeInTheDocument();
+
+  const timestamp = screen.getByText(/jan 19/i);
+  expect(timestamp).toBeInTheDocument();
+
+  const chatText = screen.getByText(/hello, adham/i);
+  expect(chatText).toBeInTheDocument();
+
+  const chatTextBox = screen.getByLabelText(/chat here/i);
+  expect(chatTextBox).toBeInTheDocument();
 });
 
 test('navigates to different chats', () => {

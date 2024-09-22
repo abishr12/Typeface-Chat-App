@@ -6,11 +6,11 @@ import { MessageList, User, UserList } from './data-access/types';
 const messages: MessageList = {
   5349: [
     { id: 1, userId: 5349, text: 'Hello, Adham!', timestamp: 1634054160 },
-    { id: 2, userId: 0, text: 'Hello, Sara!', timestamp: 1634054161 },
+    { id: 2, userId: 0, text: 'Hello, Sara!', timestamp: 1934054161 },
   ],
   4902: [
     { id: 1, userId: 4902, text: 'Hello, Adham!', timestamp: 1634054160 },
-    { id: 2, userId: 0, text: 'Hello, John!', timestamp: 1634054161 },
+    { id: 2, userId: 0, text: 'Hello, John!', timestamp: 1834054161 },
   ],
   7241: [
     { id: 1, userId: 7241, text: 'Hello, Adham!', timestamp: 1634054160 },
